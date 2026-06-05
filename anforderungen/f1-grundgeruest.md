@@ -286,3 +286,4 @@ Fortsetzung des Nestwork-Projekts. Dashboard war fertig, nächstes Feature war o
 
 ### Pick up here
 /vibe-prozess aktivieren, dann entscheiden ob /profile oder Landing Page / als nächstes kommt — beide sind eigenständige Features ohne weitere DB-Migration.
+ 
