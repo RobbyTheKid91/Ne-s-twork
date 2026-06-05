@@ -39,7 +39,7 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    if (pathname === '/login' && user) {
+    if ((pathname === '/login' || pathname === '/') && user) {
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
 
