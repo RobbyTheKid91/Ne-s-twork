@@ -285,5 +285,4 @@ Fortsetzung des Nestwork-Projekts. Dashboard war fertig, nächstes Feature war o
 - Open: Gesuch mit 0 Bezirken (alle manuell abgewählt) ist speicherbar — bewusst so gelassen (optional), aber keine Validierung vorhanden; bei Bedarf `handleSubmit` in `AddListingSheet.tsx` um Mindest-1-Bezirk-Check erweitern
 
 ### Pick up here
-/vibe-prozess aktivieren, dann entscheiden ob /profile oder Landing Page / als nächstes kommt — beide sind eigenständige Features ohne weitere DB-Migration.
- 
+/vibe-prozess aktivieren, dann entscheiden ob /profile oder Landing Page / als nächstes kommt — beide sind eigenständige Features ohne weitere DB-Migration
