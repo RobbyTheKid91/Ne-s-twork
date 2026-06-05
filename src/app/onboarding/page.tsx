@@ -198,10 +198,15 @@ function OnboardingContent() {
     if (avatarFile) {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
-        const { data } = await supabase.storage
+        const { data: uploadData } = await supabase.storage
           .from('avatars')
           .upload(user.id, avatarFile, { upsert: true, contentType: avatarFile.type })
-        if (data) avatarUrl = data.path
+        if (uploadData) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(uploadData.path)
+          avatarUrl = publicUrl
+        }
         // Falls Bucket noch nicht existiert: Foto wird übersprungen, kein Fehler
       }
     }

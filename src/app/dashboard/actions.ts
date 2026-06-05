@@ -5,7 +5,9 @@ import { createClient } from '@/lib/supabase-server'
 
 export async function deleteListing(listingId: string): Promise<void> {
   const supabase = await createClient()
-  await supabase.from('listings').delete().eq('id', listingId)
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return
+  await supabase.from('listings').delete().eq('id', listingId).eq('user_id', user.id)
   revalidatePath('/dashboard')
 }
 
@@ -14,8 +16,10 @@ export async function togglePauseListing(
   currentStatus: 'active' | 'paused'
 ): Promise<void> {
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return
   const newStatus = currentStatus === 'active' ? 'paused' : 'active'
-  await supabase.from('listings').update({ status: newStatus }).eq('id', listingId)
+  await supabase.from('listings').update({ status: newStatus }).eq('id', listingId).eq('user_id', user.id)
   revalidatePath('/dashboard')
 }
 
