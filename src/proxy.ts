@@ -12,6 +12,12 @@ export async function proxy(request: NextRequest) {
     return supabaseResponse
   }
 
+  // Öffentliche Seiten brauchen keinen Auth-Check
+  const publicRoutes = ['/datenschutz', '/impressum', '/join']
+  if (publicRoutes.some(r => pathname === r || pathname.startsWith(r + '/'))) {
+    return supabaseResponse
+  }
+
   try {
     let response = supabaseResponse
 
@@ -32,8 +38,8 @@ export async function proxy(request: NextRequest) {
 
     const { data: { user } } = await supabase.auth.getUser()
 
-    const protectedRoutes = ['/dashboard', '/onboarding', '/profile', '/']
-    const isProtected = protectedRoutes.some(route => pathname === route || (route !== '/' && pathname.startsWith(route)))
+    const protectedRoutes = ['/dashboard', '/onboarding', '/profile']
+    const isProtected = protectedRoutes.some(route => pathname === route || pathname.startsWith(route + '/'))
 
     if (isProtected && !user) {
       return NextResponse.redirect(new URL('/login', request.url))

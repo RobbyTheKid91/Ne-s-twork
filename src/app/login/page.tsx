@@ -41,7 +41,7 @@ function LoginContent() {
 
         <button
           onClick={signInWithGoogle}
-          className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors font-medium text-gray-700 shadow-sm"
+          className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors font-medium text-gray-700 shadow-sm cursor-pointer"
         >
           <GoogleIcon />
           Mit Google anmelden
